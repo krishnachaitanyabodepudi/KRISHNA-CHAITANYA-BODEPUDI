@@ -50,11 +50,17 @@ const HeroSection = () => {
             <ChevronDown className="w-4 h-4" />
           </a>
           <a
-            href={`${import.meta.env.BASE_URL}krishna-chaitanya-bodepudi.pdf`}
+            href={`${import.meta.env.BASE_URL}krishna chaitanya bodepudi.pdf`}
             download="krishna-chaitanya-bodepudi.pdf"
             className="inline-flex items-center gap-2 px-8 py-4 border border-muted-foreground/50 text-foreground font-sans text-sm uppercase tracking-wider font-bold hover:border-primary hover:text-primary transition-all"
           >
             Download CV
+          </a>
+          <a
+            href="#contact"
+            className="inline-flex items-center gap-2 px-8 py-4 border border-muted-foreground/50 text-foreground font-sans text-sm uppercase tracking-wider font-bold hover:border-primary hover:text-primary transition-all"
+          >
+            Contact
           </a>
         </div>
       </div>
