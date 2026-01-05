@@ -1,5 +1,5 @@
 import { ChevronDown, Github, Linkedin, Mail } from "lucide-react";
-import untitledVideo from "@/assets/untitled-video.mp4";
+import backgroundGif from "@/assets/Untitled video - Made with Clipchamp.gif";
 
 const HeroSection = () => {
   const socialLinks = [
@@ -13,12 +13,10 @@ const HeroSection = () => {
       id="home"
       className="relative min-h-screen flex flex-col items-center justify-center px-4 overflow-hidden"
     >
-      {/* Video background */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
+      {/* GIF background */}
+      <img
+        src={backgroundGif}
+        alt="Background"
         className="absolute inset-0 w-full h-full object-cover z-0"
         style={{ 
           objectPosition: 'center 30%',
@@ -26,9 +24,7 @@ const HeroSection = () => {
           minWidth: '100%',
           minHeight: '100%'
         }}
-      >
-        <source src={untitledVideo} type="video/mp4" />
-      </video>
+      />
       
       {/* Dark overlay for better text readability */}
       <div className="absolute inset-0 bg-black/40 z-[1]"></div>
