@@ -3,31 +3,33 @@ const ExperienceSection = () => {
     {
       title: "ML Engineer Intern",
       company: "Melotech",
-      period: "January 2024 – Present",
+      location: "Remote",
+      period: "Jan 2024 – Present",
       highlights: [
-        "Worked on ML-backed backend services supporting internal content and product experimentation workflows, focusing on inference reliability and predictable system behavior rather than model novelty.",
-        "Implemented FastAPI-based APIs for model inference and embedding-based retrieval, ensuring strict request validation and safe handling of malformed or incomplete inputs.",
-        "Built and tested vector embedding pipelines to surface relevant contextual information for downstream ML and creative processes, while avoiding cross-request and cross-session leakage.",
-        "Assisted with inference-time optimization tasks, including batching strategies and response-size control, to keep latency and cost within acceptable bounds during internal iteration.",
-        "Evaluated model outputs against real media samples to identify failure modes such as semantic drift, low-confidence retrieval, and incorrect context injection.",
-        "Added defensive handling in inference and retrieval paths so that failures returned safe fallbacks instead of partial, misleading, or unstable results.",
-        "Collaborated with engineers and product stakeholders to refine system behavior based on observed edge cases and real usage patterns, helping transition prototype ideas into deployable services.",
+        "Worked on applied ML systems supporting internal product experimentation and content intelligence workflows.",
+        "Built and integrated ML inference APIs using FastAPI, standardizing how models were accessed across internal tools and reducing setup friction during experimentation.",
+        "Developed embedding-based retrieval pipelines to supply contextual signals to downstream ML and content workflows, improving relevance and consistency during evaluations.",
+        "Improved system robustness by adding input validation, response normalization, and safe fallback handling, reducing malformed or partial inference responses by ~30%.",
+        "Optimized inference paths using batching strategies and response-size controls, achieving 20–25% lower average latency under parallel internal workloads.",
+        "Analyzed model outputs on real media samples to identify semantic drift, low-confidence retrieval, and recurring failure patterns, feeding insights into iterative improvements.",
       ],
+      focusAreas: "Focus areas: ML inference reliability, retrieval quality, latency optimization, failure handling",
     },
     {
       title: "Software Engineer",
       company: "New Mek Solutions",
-      period: "January 2022 – December 2023",
+      location: "Hyderabad, India",
+      period: "Jan 2022 – Dec 2023",
       highlights: [
-        "Built and maintained ML-backed backend services supporting internal NLP, analytics, and data-processing workflows used by product and business teams.",
-        "Designed and deployed FastAPI-based inference endpoints, handling concurrent requests with stable latency and predictable response behavior under parallel access.",
-        "Developed Python and SQL data pipelines for model training and evaluation, processing datasets ranging from tens of thousands to low millions of records depending on use case.",
-        "Implemented NLP pipelines using Hugging Face Transformers for document classification, summarization, and information extraction, replacing brittle rule-based approaches.",
-        "Optimized API performance by introducing async request handling, improving database access patterns, and reducing redundant computation, lowering average response latency by 25–35%.",
-        "Containerized services using Docker and supported CI/CD workflows, improving deployment consistency and reducing environment-related issues across releases.",
-        "Investigated production issues related to data quality, model outputs, and service regressions, contributing to post-deployment stability and reliability.",
-        "Worked closely with downstream consumers of ML services to refine API contracts, adjust data schemas, and resolve integration issues, improving the usability of ML outputs in dependent applications.",
+        "Worked on backend and ML-powered services supporting internal NLP and analytics platforms.",
+        "Developed and deployed ML-backed inference services using FastAPI and Docker, enabling consistent and reusable access to models across internal applications.",
+        "Built and maintained REST APIs to serve ML inference results, supporting concurrent internal usage and reducing reliance on ad-hoc model execution.",
+        "Created Python and SQL data pipelines for model training and evaluation, supporting repeatable experimentation on datasets ranging from tens of thousands to low millions of records.",
+        "Implemented NLP pipelines with Hugging Face Transformers for document classification, summarization, and information extraction, enabling automated processing of unstructured data.",
+        "Improved average API response times by 25–35% through async request handling and database query optimization.",
+        "Collaborated with application teams to refine API contracts and data schemas, reducing integration issues in downstream ML applications.",
       ],
+      focusAreas: "Focus areas: ML inference services, NLP pipelines, backend APIs, data pipelines, performance optimization",
     },
   ];
 
@@ -55,16 +57,18 @@ const ExperienceSection = () => {
               <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
                 <div>
                   <h3 className="text-2xl font-serif" style={{ color: 'hsl(220 15% 20%)' }}>
-                    {experience.title}
+                    {experience.title} — {experience.company}
                   </h3>
-                  <p className="text-primary font-medium">{experience.company}</p>
+                  {experience.location && (
+                    <p className="text-primary font-medium">{experience.location}</p>
+                  )}
                 </div>
                 <div className="text-right mt-2 md:mt-0">
                   <p style={{ color: 'hsl(220 10% 45%)' }}>{experience.period}</p>
                 </div>
               </div>
 
-              <ul className="space-y-3">
+              <ul className="space-y-3 mb-4">
                 {experience.highlights.map((highlight, index) => (
                   <li key={index} className="flex gap-3">
                     <span className="text-primary mt-1.5">•</span>
@@ -72,6 +76,12 @@ const ExperienceSection = () => {
                   </li>
                 ))}
               </ul>
+              
+              {experience.focusAreas && (
+                <p className="text-sm font-semibold mt-4" style={{ color: 'hsl(220 15% 20%)' }}>
+                  {experience.focusAreas}
+                </p>
+              )}
             </div>
           ))}
         </div>
