@@ -1,5 +1,5 @@
 import { ChevronDown, Github, Linkedin, Mail } from "lucide-react";
-import backgroundVideo from "@/assets/Untitled video - Made with Clipchamp.mp4";
+import backgroundVideo from "@/assets/hero-background.mp4";
 
 const HeroSection = () => {
   const socialLinks = [
