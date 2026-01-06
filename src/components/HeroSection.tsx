@@ -1,7 +1,58 @@
 import { ChevronDown, Github, Linkedin, Mail } from "lucide-react";
+import { useRef, useEffect } from "react";
 import backgroundVideo from "@/assets/hero-background.mp4";
 
 const HeroSection = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Force play on load and handle mobile autoplay restrictions
+    const playVideo = async () => {
+      try {
+        await video.play();
+      } catch (error) {
+        // If autoplay fails, try again after user interaction
+        const handleUserInteraction = async () => {
+          try {
+            await video.play();
+            document.removeEventListener('touchstart', handleUserInteraction);
+            document.removeEventListener('click', handleUserInteraction);
+          } catch (e) {
+            // Silently fail if still can't play
+          }
+        };
+        document.addEventListener('touchstart', handleUserInteraction, { once: true });
+        document.addEventListener('click', handleUserInteraction, { once: true });
+      }
+    };
+
+    // Play when video is loaded
+    if (video.readyState >= 2) {
+      playVideo();
+    } else {
+      video.addEventListener('loadeddata', playVideo, { once: true });
+    }
+
+    // Handle visibility changes (when user switches tabs/apps)
+    const handleVisibilityChange = () => {
+      if (!document.hidden && video.paused) {
+        video.play().catch(() => {
+          // Silently fail if can't play
+        });
+      }
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    // Cleanup
+    return () => {
+      video.removeEventListener('loadeddata', playVideo);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, []);
+
   const socialLinks = [
     { icon: Github, href: "https://github.com/krishnachaitanyabodepudi", label: "GitHub" },
     { icon: Linkedin, href: "https://www.linkedin.com/in/krishna-chaitanya-bodepudi", label: "LinkedIn" },
@@ -15,10 +66,12 @@ const HeroSection = () => {
     >
       {/* Video background */}
       <video
+        ref={videoRef}
         autoPlay
         loop
         muted
         playsInline
+        preload="auto"
         className="absolute inset-0 w-full h-full object-cover z-0"
         style={{ 
           objectPosition: 'center 30%',
